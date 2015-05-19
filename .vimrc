@@ -266,6 +266,7 @@ set clipboard+=unnamed
 set autowrite
 set ruler                   " 打开状态栏标尺
 set cursorline              " 突出显示当前行
+set nocursorcolumn          " 
 set magic                   " 设置魔术
 set guioptions-=T           " 隐藏工具栏
 set guioptions-=m           " 隐藏菜单栏
@@ -344,7 +345,7 @@ let Tlist_Auto_Open=1
 """""""""""""""""""""""""""""" 
 " Tag list (ctags) 
 """""""""""""""""""""""""""""""" 
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags' 
+let Tlist_Ctags_Cmd = '/usr/bin/ctags' 
 let Tlist_Show_One_File = 1 "不同时显示多个文件的tag，只显示当前文件的 
 let Tlist_File_Fold_Auto_Close = 1
 let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim 
@@ -368,7 +369,7 @@ nmap tl :Tlist<cr>
 "python补全
 let g:pydiction_location = '~/.vim/after/complete-dict'
 let g:pydiction_menu_height = 20
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+let Tlist_Ctags_Cmd='/usr/bin/ctags'
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
@@ -383,6 +384,7 @@ set fileencoding=utf8
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 let &termencoding=&encoding
 
+autocmd FileType python source ~/.vim/python.vim
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 "set nocompatible               " be iMproved
@@ -425,6 +427,7 @@ Bundle 'Vim-Script-Updater'
 Bundle 'jsbeautify'
 "Bundle 'FredKSchott/CoVim'
 "Bundle 'djangojump'
+Bundle "https://github.com/Lokaltog/vim-powerline.git"
 
 " ...
 let g:html_indent_inctags = "html,body,head,tbody"
