@@ -1,4 +1,4 @@
-# 超强vim配置文件
+# 本配置基于 https://github.com/ma6174/vim 修改.
 
 ### 运行截图
 
