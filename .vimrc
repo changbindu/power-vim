@@ -396,7 +396,7 @@ call vundle#rc()
 " required! 
 Bundle 'gmarik/vundle'
 
-" My Bundles here:
+" More plugins: http://vimawesome.com/
 "
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'L9'
@@ -421,12 +421,13 @@ Plugin 'wincent/Command-T'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tomasr/molokai'
 Plugin 'klen/python-mode'
-Plugin 'honza/vim-snippets'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Townk/vim-autoclose'
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-rails'
-Plugin 'garbas/vim-snipmate'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'msanders/snipmate.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'terryma/vim-multiple-cursors'
 
 " ...
 let g:html_indent_inctags = "html,body,head,tbody"
