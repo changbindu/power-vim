@@ -384,7 +384,6 @@ set fileencoding=utf8
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 let &termencoding=&encoding
 
-autocmd FileType python source ~/.vim/python.vim
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 "set nocompatible               " be iMproved
@@ -399,24 +398,15 @@ Bundle 'gmarik/vundle'
 
 " My Bundles here:
 "
-" original repos on github
-Bundle 'tpope/vim-fugitive'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'Yggdroot/indentLine'
-let g:indentLine_char = '┊'
-"Bundle 'tpope/vim-rails.git'
-" vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-" non github repos
-Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'Auto-Pairs'
 Bundle 'python-imports.vim'
 Bundle 'CaptureClipboard'
-Bundle 'ctrlp-modified.vim'
+Plugin 'kien/ctrlp.vim'
 Bundle 'last_edit_marker.vim'
 Bundle 'synmark.vim'
-"Bundle 'Python-mode-klen'
 Bundle 'SQLComplete.vim'
 Bundle 'Javascript-OmniCompletion-with-YUI-and-j'
 Bundle 'JavaScript-Indent'
@@ -425,9 +415,18 @@ Bundle 'jslint.vim'
 Bundle "pangloss/vim-javascript"
 Bundle 'Vim-Script-Updater'
 Bundle 'jsbeautify'
-"Bundle 'FredKSchott/CoVim'
-"Bundle 'djangojump'
-Bundle "https://github.com/Lokaltog/vim-powerline.git"
+
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'wincent/Command-T'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tomasr/molokai'
+Plugin 'klen/python-mode'
+Plugin 'honza/vim-snippets'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Townk/vim-autoclose'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-rails'
+Plugin 'garbas/vim-snipmate'
 
 " ...
 let g:html_indent_inctags = "html,body,head,tbody"

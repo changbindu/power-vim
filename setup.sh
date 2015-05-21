@@ -12,9 +12,8 @@ rm ~/.vim -rf
 cp ./ ~/.vim/ -rf
 mv ~/.vim/.vimrc ~/ -f
 
-sudo apt-get install -y vim vim-gnome ctags xclip astyle python-setuptools
-sudo easy_install -ZU autopep8 twisted
-        
+sudo apt-get install -y vim vim-gnome ctags xclip astyle python-pip python-autopep8 python-twisted
+
 git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 echo "正在努力为您安装bundle程序" > tmp.log
 echo "安装完毕将自动退出" >> tmp.log
