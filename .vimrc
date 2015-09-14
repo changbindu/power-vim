@@ -1,5 +1,5 @@
-set sw=4
-set ts=4
+set sw=8
+set ts=8
 set et
 set smarttab
 set smartindent
