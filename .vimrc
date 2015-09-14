@@ -236,8 +236,11 @@ endif
 
 " toggle tagbar display
 map <F4> :TagbarToggle<CR>
+autocmd FileType * nested :call tagbar#autoopen()
 " autofocus on tagbar open
-let g:tagbar_autofocus = 1
+let g:tagbar_autofocus = 0
+let g:tagbar_compact = 1
+let g:tagbar_autoclose = 1
 
 " NERDTree ----------------------------- 
 
