@@ -9,16 +9,15 @@ if [ -n "$confirm" ]; then
 fi
 
 rm ~/.vim -rf
-cp ./ ~/.vim/ -rf
-mv ~/.vim/.vimrc ~/ -f
+cp .vimrc ~/.vimrc
 
-sudo apt-get install -y vim vim-gnome ctags xclip astyle python-pip python-autopep8 python-twisted
+sudo apt-get install vim exuberant-ctags git
+sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
 
-git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-echo "正在努力为您安装bundle程序" > tmp.log
-echo "安装完毕将自动退出" >> tmp.log
-echo "请耐心等待" >> tmp.log
-vi tmp.log -c "BundleInstall" -c "q" -c "q"
-rm tmp.log
+echo "正在安装Vundle..."
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+echo "正在安装所有插件，请耐心等待"
+vim +PluginInstall +qall
 echo "安装完成"
 
