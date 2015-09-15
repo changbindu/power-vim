@@ -130,6 +130,16 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
+" remember last position
+autocmd BufReadPost *
+            \ if line("'\"")>0&&line("'\"")<=line("$") |
+            \exe "normal g'\"" |
+            \ endif
+
+" highlight current line
+set cursorline
+hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+
 " always show status bar
 set ls=2
 
@@ -237,7 +247,6 @@ endif
 " toggle tagbar display
 map <F4> :TagbarToggle<CR>
 autocmd FileType * nested :call tagbar#autoopen()
-" autofocus on tagbar open
 let g:tagbar_autofocus = 0
 let g:tagbar_compact = 1
 let g:tagbar_autoclose = 1
