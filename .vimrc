@@ -120,10 +120,10 @@ filetype plugin on
 filetype indent on
 
 " tabs and spaces handling
-set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set noexpandtab
+set tabstop=8
+set softtabstop=8
+set shiftwidth=8
 
 " tab length exceptions on some file types
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
