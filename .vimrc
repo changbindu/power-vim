@@ -67,6 +67,8 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'klen/python-mode'
 " Better autocompletion
 Bundle 'Shougo/neocomplcache.vim'
+" a fast, as-you-type, fuzzy-search code completion engine for Vim
+" Bundle 'Valloric/YouCompleteMe'
 " Code snippets engine for Vim
 Bundle 'drmingdrmer/xptemplate'
 " Snippets manager (SnipMate), dependencies, and snippets repo
