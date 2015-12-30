@@ -12,7 +12,11 @@
 - :s/old/new/g 当前行无提示替换
 - :%s/old/new/g 无提示替换
 - :%s/old/new/gc 确认替换
-- :v/xxx/d 选择过滤(只显示包含xxx字符串的行)
+- :g/{pattern}/d  删除匹配行
+- :v/{pattern}/d  保留匹配行(只显示包含xxx字符串的行)
+
+:g/{pattern}/d "删除匹配行 
+:v/{pattern}/d "保留匹配行
 
 ### 快捷键
 - F2 自动去空行
