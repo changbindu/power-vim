@@ -223,10 +223,10 @@ set wildmode=list:longest
 
 " better backup, swap and undos storage
 set directory=~/.vim/dirs/tmp     " directory to place swap files in
-set backup                        " make backup files
-set backupdir=~/.vim/dirs/backups " where to put backup files
-set undofile                      " persistent undos - undo after you re-open the file
-set undodir=~/.vim/dirs/undos
+" set backup                        " make backup files
+" set backupdir=~/.vim/dirs/backups " where to put backup files
+" set undofile                      " persistent undos - undo after you re-open the file
+" set undodir=~/.vim/dirs/undos
 set viminfo+=n~/.vim/dirs/viminfo
 " store yankring history file there too
 let g:yankring_history_dir = '~/.vim/dirs/'
