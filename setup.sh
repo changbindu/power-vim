@@ -11,7 +11,7 @@ fi
 rm ~/.vim -rf
 cp .vimrc ~/.vimrc
 
-sudo apt-get install vim exuberant-ctags git
+sudo apt-get python-pip install vim exuberant-ctags git
 sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
 
 echo "正在安装Vundle..."
