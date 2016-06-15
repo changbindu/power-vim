@@ -22,7 +22,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " ============================================================================
 " Active plugins
@@ -31,88 +31,88 @@ Bundle 'gmarik/vundle'
 " Plugins from github repos:
 
 " Python and PHP Debugger
-Bundle 'fisadev/vim-debug.vim'
+Plugin 'fisadev/vim-debug.vim'
 " Better file browser
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 " Code commenter
-Bundle 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'
 " Class/module browser
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 " Code and files fuzzy finder
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 " Extension to ctrlp, for fuzzy command finder
-Bundle 'fisadev/vim-ctrlp-cmdpalette'
+Plugin 'fisadev/vim-ctrlp-cmdpalette'
 " Zen coding
-Bundle 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim'
 " Git integration
-Bundle 'motemen/git-vim'
+Plugin 'motemen/git-vim'
 " Tab list panel
-Bundle 'kien/tabman.vim'
+Plugin 'kien/tabman.vim'
 " Airline
-Bundle 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " Terminal Vim with 256 colors colorscheme
-Bundle 'fisadev/fisa-vim-colorscheme'
+Plugin 'fisadev/fisa-vim-colorscheme'
 " Consoles as buffers
-Bundle 'rosenfeld/conque-term'
+Plugin 'rosenfeld/conque-term'
 " Pending tasks list
-Bundle 'fisadev/FixedTaskList.vim'
+Plugin 'fisadev/FixedTaskList.vim'
 " Surround
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 " Autoclose
-Bundle 'Townk/vim-autoclose'
+Plugin 'Townk/vim-autoclose'
 " Indent text object
-Bundle 'michaeljsmith/vim-indent-object'
+Plugin 'michaeljsmith/vim-indent-object'
 " Python mode (indentation, doc, refactor, lints, code checking, motion and
 " operators, highlighting, run and ipdb breakpoints)
-Bundle 'klen/python-mode'
+Plugin 'klen/python-mode'
 " Better autocompletion
-Bundle 'Shougo/neocomplcache.vim'
+Plugin 'Shougo/neocomplcache.vim'
 " a fast, as-you-type, fuzzy-search code completion engine for Vim
-" Bundle 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 " Code snippets engine for Vim
-Bundle 'drmingdrmer/xptemplate'
+Plugin 'drmingdrmer/xptemplate'
 " Snippets manager (SnipMate), dependencies, and snippets repo
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'honza/vim-snippets'
-Bundle 'garbas/vim-snipmate'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'honza/vim-snippets'
+Plugin 'garbas/vim-snipmate'
 " Git/mercurial/others diff icons on the side of the file lines
-Bundle 'mhinz/vim-signify'
+Plugin 'mhinz/vim-signify'
 " Automatically sort python imports
-Bundle 'fisadev/vim-isort'
+Plugin 'fisadev/vim-isort'
 " Drag visual blocks arround
-Bundle 'fisadev/dragvisuals.vim'
+Plugin 'fisadev/dragvisuals.vim'
 " Window chooser
-Bundle 't9md/vim-choosewin'
+Plugin 't9md/vim-choosewin'
 " Python and other languages code checker
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 " Paint css colors with the real color
-Bundle 'lilydjwg/colorizer'
+Plugin 'lilydjwg/colorizer'
 " Relative numbering of lines (0 is the current line)
 " (disabled by default because is very intrusive and can't be easily toggled
 " on/off. When the plugin is present, will always activate the relative 
 " numbering every time you go to normal mode. Author refuses to add a setting 
 " to avoid that)
-" Bundle 'myusuf3/numbers.vim'
+" Plugin 'myusuf3/numbers.vim'
 
 " Plugins from vim-scripts repos:
 
 " Search results counter
-Bundle 'IndexedSearch'
+Plugin 'IndexedSearch'
 " XML/HTML tags navigation
-Bundle 'matchit.zip'
+Plugin 'matchit.zip'
 " Gvim colorscheme
-Bundle 'Wombat'
+Plugin 'Wombat'
 " Yank history navigation
-Bundle 'YankRing.vim'
+Plugin 'YankRing.vim'
 
 " ============================================================================
 " Install plugins the first time vim runs
 
 if iCanHazVundle == 0
-    echo "Installing Bundles, please ignore key map error messages"
+    echo "Installing Plugins, please ignore key map error messages"
     echo ""
-    :BundleInstall
+    :PluginInstall
 endif
 
 " ============================================================================
@@ -443,7 +443,7 @@ let g:choosewin_overlay_enable = 1
 " Airline ------------------------------
 
 let g:airline_powerline_fonts = 0
-let g:airline_theme = 'bubblegum'
+let g:airline_theme = 'light'
 let g:airline#extensions#whitespace#enabled = 0
 
 " to use fancy symbols for airline, uncomment the following lines and use a
