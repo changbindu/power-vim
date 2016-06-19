@@ -10,7 +10,6 @@ let iCanHazVundle=1
 let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
     echo "Installing Vundle..."
-    echo ""
     silent !mkdir -p ~/.vim/bundle
     silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
     let iCanHazVundle=0
@@ -30,8 +29,6 @@ Plugin 'gmarik/vundle'
 
 " Plugins from github repos:
 
-" Python and PHP Debugger
-Plugin 'fisadev/vim-debug.vim'
 " Better file browser
 Plugin 'scrooloose/nerdtree'
 " Code commenter
@@ -39,11 +36,7 @@ Plugin 'scrooloose/nerdcommenter'
 " Class/module browser
 Plugin 'majutsushi/tagbar'
 " Code and files fuzzy finder
-Plugin 'kien/ctrlp.vim'
-" Extension to ctrlp, for fuzzy command finder
-Plugin 'fisadev/vim-ctrlp-cmdpalette'
-" Zen coding
-Plugin 'mattn/emmet-vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 " Git integration
 Plugin 'motemen/git-vim'
 " Tab list panel
@@ -52,10 +45,6 @@ Plugin 'kien/tabman.vim'
 Plugin 'vim-airline/vim-airline-themes'
 " Terminal Vim with 256 colors colorscheme
 Plugin 'fisadev/fisa-vim-colorscheme'
-" Consoles as buffers
-Plugin 'rosenfeld/conque-term'
-" Pending tasks list
-Plugin 'fisadev/FixedTaskList.vim'
 " Surround
 Plugin 'tpope/vim-surround'
 " Autoclose
@@ -67,10 +56,6 @@ Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'klen/python-mode'
 " Better autocompletion
 Plugin 'Shougo/neocomplcache.vim'
-" a fast, as-you-type, fuzzy-search code completion engine for Vim
-" Plugin 'Valloric/YouCompleteMe'
-" Code snippets engine for Vim
-Plugin 'drmingdrmer/xptemplate'
 " Snippets manager (SnipMate), dependencies, and snippets repo
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -88,12 +73,6 @@ Plugin 't9md/vim-choosewin'
 Plugin 'scrooloose/syntastic'
 " Paint css colors with the real color
 Plugin 'lilydjwg/colorizer'
-" Relative numbering of lines (0 is the current line)
-" (disabled by default because is very intrusive and can't be easily toggled
-" on/off. When the plugin is present, will always activate the relative 
-" numbering every time you go to normal mode. Author refuses to add a setting 
-" to avoid that)
-" Plugin 'myusuf3/numbers.vim'
 
 " Plugins from vim-scripts repos:
 
@@ -106,12 +85,34 @@ Plugin 'Wombat'
 " Yank history navigation
 Plugin 'YankRing.vim'
 
+
+" ===========================================================================
+" Below plugins are mostly used, uncomment them to enable
+
+" Consoles as buffers
+" Plugin 'rosenfeld/conque-term'
+
+" Python and PHP Debugger
+" Plugin 'fisadev/vim-debug.vim'
+
+" Extension to ctrlp, for fuzzy command finder
+" Plugin 'fisadev/vim-ctrlp-cmdpalette'
+
+" Zen coding
+" Plugin 'mattn/emmet-vim'
+
+" a fast, as-you-type, fuzzy-search code completion engine for Vim
+" Plugin 'Valloric/YouCompleteMe'
+
+" Code snippets engine for Vim
+" Plugin 'drmingdrmer/xptemplate'
+
+
 " ============================================================================
 " Install plugins the first time vim runs
 
 if iCanHazVundle == 0
     echo "Installing Plugins, please ignore key map error messages"
-    echo ""
     :PluginInstall
 endif
 
@@ -135,10 +136,8 @@ autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " remember last position
-autocmd BufReadPost *
-            \ if line("'\"")>0&&line("'\"")<=line("$") |
-            \exe "normal g'\"" |
-            \ endif
+au BufReadPost * if line("'\"") > 0|if line("'\"") <=
+	\ line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
 " highlight current line
 set cursorline
@@ -222,14 +221,13 @@ set scrolloff=3
 set wildmode=list:longest
 
 " better backup, swap and undos storage
-set directory=~/.vim/dirs/tmp     " directory to place swap files in
-" set backup                        " make backup files
-" set backupdir=~/.vim/dirs/backups " where to put backup files
-" set undofile                      " persistent undos - undo after you re-open the file
-" set undodir=~/.vim/dirs/undos
-set viminfo+=n~/.vim/dirs/viminfo
+set directory=/tmp/vim/tmp         " directory to place swap files in
+" set backup                       " make backup files
+" set backupdir=/tmp/vim/backups   " where to put backup files
+" set undofile                     " persistent undos - undo after you re-open the file
+" set undodir=/tmp/vim/undos
 " store yankring history file there too
-let g:yankring_history_dir = '~/.vim/dirs/'
+let g:yankring_history_dir = '/tmp/vim/'
 
 " create needed directories if they don't exist
 if !isdirectory(&backupdir)
@@ -253,7 +251,9 @@ map <F4> :TagbarToggle<CR>
 autocmd FileType * nested :call tagbar#autoopen()
 let g:tagbar_autofocus = 0
 let g:tagbar_compact = 1
-let g:tagbar_autoclose = 1
+let g:tagbar_autoclose = 0
+let g:tagbar_autopreview = 1
+let g:tagbar_sort = 0
 
 " NERDTree ----------------------------- 
 
@@ -264,11 +264,6 @@ nmap ,t :NERDTreeFind<CR>
 " don;t show these file types
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
-
-" Tasklist ------------------------------
-
-" show pending tasks list
-map <F2> :TaskList<CR>
 
 " Vim-debug ------------------------------
 
@@ -312,7 +307,7 @@ nmap ,pe :call CtrlPWithSearchText(expand('<cfile>'), '')<CR>
 nmap ,wm :call CtrlPWithSearchText(expand('<cword>'), 'MRUFiles')<CR>
 nmap ,wc :call CtrlPWithSearchText(expand('<cword>'), 'CmdPalette')<CR>
 " don't change working directory
-let g:ctrlp_working_path_mode = 0
+let g:ctrlp_working_path_mode = "ra"
 " ignore these files and folders on file finder
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.git|\.hg|\.svn)$',
@@ -327,8 +322,7 @@ nmap <leader>e :Errors<CR>
 let g:syntastic_check_on_open = 1
 " don't put icons on the sign column (it hides the vcs status icons of signify)
 let g:syntastic_enable_signs = 0
-" custom icons (enable them if you use a patched font, and enable the previous 
-" setting)
+" custom icons (enable them if you use a patched font, and enable the previous setting)
 "let g:syntastic_error_symbol = '✗'
 "let g:syntastic_warning_symbol = '⚠'
 "let g:syntastic_style_error_symbol = '✗'
@@ -445,16 +439,3 @@ let g:choosewin_overlay_enable = 1
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'light'
 let g:airline#extensions#whitespace#enabled = 0
-
-" to use fancy symbols for airline, uncomment the following lines and use a
-" patched font (more info on the README.rst)
-"if !exists('g:airline_symbols')
-"   let g:airline_symbols = {}
-"endif
-"let g:airline_left_sep = '⮀'
-"let g:airline_left_alt_sep = '⮁'
-"let g:airline_right_sep = '⮂'
-"let g:airline_right_alt_sep = '⮃'
-"let g:airline_symbols.branch = '⭠'
-"let g:airline_symbols.readonly = '⭤'
-"let g:airline_symbols.linenr = '⭡'
