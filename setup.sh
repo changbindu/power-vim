@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "安装将花费一定时间，请耐心等待直到安装完成^_^"
+echo "Installation will take some time, please wait!"
 
 echo -n "Will remove old ~/.vim files[PRESS ENTER TO CONTINUE]:"
 read confirm
@@ -14,10 +14,10 @@ cp .vimrc ~/.vimrc
 sudo apt-get install python-pip vim exuberant-ctags git
 sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
 
-echo "正在安装Vundle..."
+echo "Installing Vundle..."
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-echo "正在安装所有插件，请耐心等待"
+echo "Installing plugins"
 vim +PluginInstall +qall
-echo "安装完成"
+echo "All done, enjoy with pow-vim!"
 
