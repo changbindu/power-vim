@@ -8,8 +8,9 @@ if [ -n "$confirm" ]; then
 	exit 1
 fi
 
-rm ~/.vim -rf
+rm ~/.vim -rf && mkdir -p ~/.vim
 cp .vimrc ~/.vimrc
+cp tips.md ~/.vim/
 
 sudo apt-get install python-pip vim exuberant-ctags git
 sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort

@@ -31,6 +31,8 @@ Plugin 'gmarik/vundle'
 
 " Better file browser
 Plugin 'scrooloose/nerdtree'
+" A plugin of NERDTree showing git status flags
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 " Code commenter
 Plugin 'scrooloose/nerdcommenter'
 " Class/module browser
@@ -121,6 +123,7 @@ endif
 " ============================================================================
 " Vim settings and mappings
 " You can edit them as you wish
+let mapleader = ","
 
 " allow plugins by file type (required for plugins!)
 filetype plugin on
@@ -159,16 +162,14 @@ syntax on
 " show line numbers
 set nu
 
+" show our help doc
+nmap <F2> :tabnew ~/.vim/tips.md<CR>
+
 " tab navigation mappings
-map tn :tabn<CR>
-map tp :tabp<CR>
-map tm :tabm 
-map tt :tabnew 
-map ts :tab split<CR>
-map <C-S-Right> :tabn<CR>
-imap <C-S-Right> <ESC>:tabn<CR>
-map <C-S-Left> :tabp<CR>
-imap <C-S-Left> <ESC>:tabp<CR>
+map <C-S-Right> :tabnext<CR>
+imap <C-S-Right> <ESC>:tabnext<CR>
+map <C-S-Left> :tabprevious<CR>
+imap <C-S-Left> <ESC>:tabprevious<CR>
 
 " navigate windows with meta+arrows
 map <M-Right> <c-w>l
@@ -196,11 +197,11 @@ ca w!! w !sudo tee "%"
 command! -nargs=1 RecurGrep lvimgrep /<args>/gj ./**/*.* | lopen | set nowrap
 command! -nargs=1 RecurGrepFast silent exec 'lgrep! <q-args> ./**/*.*' | lopen
 " mappings to call them
-nmap ,R :RecurGrep 
-nmap ,r :RecurGrepFast 
+nmap <leader>R :RecurGrep
+nmap <leader>r :RecurGrepFast
 " mappings to call them with the default word as search text
-nmap ,wR :RecurGrep <cword><CR>
-nmap ,wr :RecurGrepFast <cword><CR>
+nmap <leader>wR :RecurGrep <cword><CR>
+nmap <leader>wr :RecurGrepFast <cword><CR>
 
 " use 256 colors when possible
 if &term =~? 'mlterm\|xterm\|xterm-256\|screen-256'
@@ -259,10 +260,14 @@ let g:tagbar_sort = 0
 
 " NERDTree ----------------------------- 
 
+" open a NERDTree automatically when vim starts up if no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 " toggle nerdtree display
 map <F3> :NERDTreeToggle<CR>
 " open nerdtree with the current file selected
-nmap ,t :NERDTreeFind<CR>
+nmap <leader>t :NERDTreeFind<CR>
 " don;t show these file types
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
@@ -285,36 +290,32 @@ map <F12> :Dbg up<CR>
 
 " file finder mapping
 let g:ctrlp_map = ',e'
+" search from git root if possible
+let g:ctrlp_working_path_mode = 'ra'
+" ignore these files and folders on file finder
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.git|\.hg|\.svn)$',
+  \ 'file': '\.pyc$\|\.pyo$',
+  \ }
 " tags (symbols) in current file finder mapping
-nmap ,g :CtrlPBufTag<CR>
+nmap <leader>g :CtrlPBufTag<CR>
 " tags (symbols) in all files finder mapping
-nmap ,G :CtrlPBufTagAll<CR>
+nmap <leader>G :CtrlPBufTagAll<CR>
 " general code finder in all files mapping
-nmap ,f :CtrlPLine<CR>
-" recent files finder mapping
-nmap ,m :CtrlPMRUFiles<CR>
-" commands finder mapping
-nmap ,c :CtrlPCmdPalette<CR>
+nmap <leader>f :CtrlPLine<CR>
+" files finder mapping
+nmap <leader>p :CtrlP<CR>
 " to be able to call CtrlP with default search text
 function! CtrlPWithSearchText(search_text, ctrlp_command_end)
     execute ':CtrlP' . a:ctrlp_command_end
     call feedkeys(a:search_text)
 endfunction
 " same as previous mappings, but calling with current word as default text
-nmap ,wg :call CtrlPWithSearchText(expand('<cword>'), 'BufTag')<CR>
-nmap ,wG :call CtrlPWithSearchText(expand('<cword>'), 'BufTagAll')<CR>
-nmap ,wf :call CtrlPWithSearchText(expand('<cword>'), 'Line')<CR>
-nmap ,we :call CtrlPWithSearchText(expand('<cword>'), '')<CR>
-nmap ,pe :call CtrlPWithSearchText(expand('<cfile>'), '')<CR>
-nmap ,wm :call CtrlPWithSearchText(expand('<cword>'), 'MRUFiles')<CR>
-nmap ,wc :call CtrlPWithSearchText(expand('<cword>'), 'CmdPalette')<CR>
-" don't change working directory
-let g:ctrlp_working_path_mode = "ra"
-" ignore these files and folders on file finder
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.git|\.hg|\.svn)$',
-  \ 'file': '\.pyc$\|\.pyo$',
-  \ }
+nmap <leader>wg :call CtrlPWithSearchText(expand('<cword>'), 'BufTag')<CR>
+nmap <leader>wG :call CtrlPWithSearchText(expand('<cword>'), 'BufTagAll')<CR>
+nmap <leader>wf :call CtrlPWithSearchText(expand('<cword>'), 'Line')<CR>
+nmap <leader>we :call CtrlPWithSearchText(expand('<cword>'), '')<CR>
+nmap <leader>pe :call CtrlPWithSearchText(expand('<cfile>'), '')<CR>
 
 " Syntastic ------------------------------
 
@@ -337,8 +338,8 @@ let g:pymode_rope = 0
 " open definitions on same window, and custom mappings for definitions and occurrences
 let g:pymode_rope_goto_definition_bind = ',d'
 let g:pymode_rope_goto_definition_cmd = 'e'
-nmap ,D :tab split<CR>:PymodePython rope.goto()<CR>
-nmap ,o :RopeFindOccurrences<CR>
+nmap <leader>D :tab split<CR>:PymodePython rope.goto()<CR>
+nmap <leader>o :RopeFindOccurrences<CR>
 
 " NeoComplCache ------------------------------
 
@@ -437,7 +438,7 @@ let g:airline_theme = 'light'
 let g:airline#extensions#whitespace#enabled = 0
 
 " Cscope ------------------------------
-
+" use command 'cscope -Rbq -f xxx.out' to generate db first
 nnoremap <leader>fa :call cscope#findInteractive(expand('<cword>'))<CR>
 nnoremap <leader>l :call ToggleLocationList()<CR>
 " s: Find this C symbol
