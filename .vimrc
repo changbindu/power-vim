@@ -164,6 +164,8 @@ set nu
 
 " show our help doc
 nmap <F2> :tabnew ~/.vim/tips.md<CR>
+" formate c code
+nmap <F5> :%!astyle --mode=c --style=linux<CR>
 
 " tab navigation mappings
 map <C-S-Right> :tabnext<CR>
@@ -276,15 +278,6 @@ let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
 " disable default mappings, have a lot of conflicts with other plugins
 let g:vim_debug_disable_mappings = 1
-" add some useful mappings
-map <F5> :Dbg over<CR>
-map <F6> :Dbg into<CR>
-map <F7> :Dbg out<CR>
-map <F8> :Dbg here<CR>
-map <F9> :Dbg break<CR>
-map <F10> :Dbg watch<CR>
-map <F11> :Dbg down<CR>
-map <F12> :Dbg up<CR>
 
 " CtrlP ------------------------------
 

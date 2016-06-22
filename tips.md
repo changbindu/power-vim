@@ -5,14 +5,7 @@
 - F2 打开本提示
 - F3 打开文件浏览器
 - F4 打开函数列表
-- F5 Python调试:Dbg over
-- F6 Python调试:Dbg into
-- F7 Python调试:Dbg out
-- F8 Python调试:Dbg here
-- F9 Python调试:Dbg break
-- F10 Python调试:Dbg watch
-- F11 Python调试:Dbg down
-- F12 Python调试:Dbg up
+- F5 格式化C代码
 
 ### 多Tab编辑
 - :tabnew <file>	打开一个新标签(或则在NerdTree窗口按't'键)
@@ -53,8 +46,8 @@
 - :g/{pattern}/d	删除匹配行
 - :v/{pattern}/d	保留匹配行(只显示包含xxx字符串的行)
 
-:g/{pattern}/d		删除匹配行 
-:v/{pattern}/d		保留匹配行
+- :g/{pattern}/d	删除匹配行
+- :v/{pattern}/d	保留匹配行
 
 ### 一般跳转
 - gg		将光标移到文件头部
@@ -83,6 +76,15 @@
 - ]c 跳转到下一差异点
 - [c 反向跳转]
 
+### Python调试:
+- :Dbg over
+- :Dbg into
+- :Dbg out
+- :Dbg here
+- :Dbg break
+- :Dbg watch
+- :Dbg down
+- :Dbg up
 
 ### 编辑大文件
 编辑大文件时，插件会导致卡死，此时可以禁用插件启动vim: vim -u "NONE" file.log
