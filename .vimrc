@@ -199,8 +199,8 @@ ca w!! w !sudo tee "%"
 command! -nargs=1 RecurGrep lvimgrep /<args>/gj ./**/*.* | lopen | set nowrap
 command! -nargs=1 RecurGrepFast silent exec 'lgrep! <q-args> ./**/*.*' | lopen
 " mappings to call them
-nmap <leader>R :RecurGrep
-nmap <leader>r :RecurGrepFast
+nmap <leader>R :RecurGrep 
+nmap <leader>r :RecurGrepFast 
 " mappings to call them with the default word as search text
 nmap <leader>wR :RecurGrep <cword><CR>
 nmap <leader>wr :RecurGrepFast <cword><CR>
