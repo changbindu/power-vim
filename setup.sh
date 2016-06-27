@@ -31,7 +31,7 @@ echo "Installation will take some time, please wait!"
 cp .vimrc ~/.vimrc
 cp tips.md ~/.vim/
 
-sudo apt-get install python-pip vim vim-nox exuberant-ctags git astyle
+sudo apt-get install python-pip vim vim-nox exuberant-ctags cscope git astyle
 sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
 
 if [ $update == false ]; then
