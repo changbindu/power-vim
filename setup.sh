@@ -36,7 +36,7 @@ sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
 
 if [ $update == false ]; then
     echo "Installing Vundle..."
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
 
     echo "Installing plugins"
     vim +PluginInstall +qall

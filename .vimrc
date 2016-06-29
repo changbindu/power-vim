@@ -7,21 +7,21 @@ set nocompatible
 
 " Setting up Vundle - the vim plugin bundler
 let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
     echo "Installing Vundle..."
     silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    silent !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
     let iCanHazVundle=0
 endif
 
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" let Vundle manage Vundle
-Plugin 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
 " ============================================================================
 " Active plugins
@@ -111,6 +111,8 @@ Plugin 'YankRing.vim'
 " Code snippets engine for Vim
 " Plugin 'drmingdrmer/xptemplate'
 
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 
 " ============================================================================
 " Install plugins the first time vim runs
@@ -121,13 +123,11 @@ if iCanHazVundle == 0
 endif
 
 " ============================================================================
-" Vim settings and mappings
-" You can edit them as you wish
+" Vim settings and mappings, You can edit them as you wish
 let mapleader = ","
 
 " allow plugins by file type (required for plugins!)
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " tabs and spaces handling
 set noexpandtab
