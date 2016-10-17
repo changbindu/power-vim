@@ -257,7 +257,7 @@ autocmd FileType * nested :call tagbar#autoopen()
 let g:tagbar_autofocus = 0
 let g:tagbar_compact = 1
 let g:tagbar_autoclose = 0
-let g:tagbar_autopreview = 1
+let g:tagbar_autopreview = 0
 let g:tagbar_sort = 0
 
 " NERDTree ----------------------------- 
