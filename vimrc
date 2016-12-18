@@ -162,6 +162,13 @@ syntax on
 " show line numbers
 set nu
 
+" set folding
+set foldmethod=syntax
+augroup OpenAllFoldsOnFileOpen
+	autocmd!
+	autocmd BufRead * normal zR
+augroup END
+
 " show our help doc
 nmap <F2> :tabnew ~/.vim/tips.md<CR>
 " formate c code
