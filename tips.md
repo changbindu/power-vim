@@ -30,14 +30,17 @@
 - dd	删除当前行
 - ndd	从当前行开始向后删除n行
 
-### 文字搜索
+### 搜索
 (以下命令规则：',x'表示搜索输入的字符，加上w则自动搜索光标位置的字符，比如',wr', ',wf')
-- ,r	在当前目录递归搜索(vimgrep)输入的单词，R代表recursive
+###vimgrep
+- ,r	在当前目录递归搜索输入的单词，r代表recursive
 - ,R	同上，直接用grep命令搜索
-- ,g	在当前文件搜索(CtrlP)输入的符号(需要ctag文件)
-- ,G	在所有打开的文件中搜索(CtrlP)输入的符号
-- ,f	在当前文件搜索(CtrlP)输入的单词
-- ,p	在工作目录模糊搜索(CtrlP)输入的文件名，工作目录是git根目录或当前文件的目录(如果没有找到.git文件夹)
+
+###CtrlP
+- ,p	打开CtrlP,在工作目录模糊搜索文件，工作目录是git根目录或当前文件的目录(如果没有找到.git目录)
+- ,g	打开CtrlP，在当前文件搜索符号(需要ctag文件)
+- ,G	打开CtrlP，在所有打开的文件中搜索符号
+- ,f	打开CtrlP，在当前文件搜索单词
 
 ### 替换
 - :s/old/new/g		当前行无提示替换
@@ -57,10 +60,25 @@
 - 33%		文件的33%处
 
 ### 符号跳转
+####ctags
+生成tags文件：ctags -R （ctags也可以使用cscope数据库）
 - CTRL-]	跟着link/tag转入 (follow link/tag)
 - CTRL-o	回到上一次的jump (go back)
 - CTRL-i	跳回下一个 (go forward)
 - :ju		显示所有的可以跳跃的地方 (print jump list)
+
+####cscope
+生成cscope数据库：
+find . -name "*.h" -o -name "*.c" -o -name "*.cc" > cscope.files
+cscope -bkq -i cscope.files
+- ,fg ---- 查找函数、宏、枚举等定义的位置，类似ctags所提供的功能
+- ,fc ---- 查找调用本函数的函数
+- ,ft ---- 查找指定的字符串
+- ,fs ---- 查找C语言符号，即查找函数名、宏、枚举值等出现的地方
+- ,fd ---- 查找本函数调用的函数
+- ,fe ---- 查找egrep模式，相当于egrep功能，但查找速度快多了
+- ,ff ---- 查找并打开文件，类似vim的find功能
+- ,fi ---- 查找包含本文件的文
 
 ### 折叠命令
 - set fdm=syntax	设置折叠方式
@@ -69,7 +87,7 @@
 - zo			展开折叠
 - zO			对所在范围内所有嵌套的折叠点展开
 
-### 代码注释
+### 代码注释(nerdcommenter)
 (Visual模式下执行命令，会对选中的特定区块进行注释/反注释)
 - ,ca		在可选的注释方式之间切换，比如C/C++ 的块注释/* */和行注释//
 - ,cc		注释当前行

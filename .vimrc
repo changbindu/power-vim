@@ -76,7 +76,7 @@ Plugin 'scrooloose/syntastic'
 " Paint css colors with the real color
 Plugin 'lilydjwg/colorizer'
 " smart cscope helper for vim
-Plugin 'vim-scripts/cscope.vim'
+" Plugin 'vim-scripts/cscope.vim'
 
 " Plugins from vim-scripts repos:
 
@@ -282,13 +282,15 @@ let g:vim_debug_disable_mappings = 1
 " CtrlP ------------------------------
 
 " file finder mapping
-let g:ctrlp_map = ',e'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 " search from git root if possible
 let g:ctrlp_working_path_mode = 'ra'
 " ignore these files and folders on file finder
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.git|\.hg|\.svn)$',
-  \ 'file': '\.pyc$\|\.pyo$',
+  \ 'file': '\v\.(exe|so|dll|pyc|pyo|o)$',
   \ }
 " tags (symbols) in current file finder mapping
 nmap <leader>g :CtrlPBufTag<CR>
@@ -461,23 +463,45 @@ let g:airline_powerline_fonts = 0
 let g:airline_theme = 'light'
 let g:airline#extensions#whitespace#enabled = 0
 
+" ctags ------------------------------
+" use command 'ctags -R .' to generate tags file first
+set tags=tags;/
+
 " Cscope ------------------------------
 " use command 'cscope -Rbq -f xxx.out' to generate db first
-nnoremap <leader>fa :call cscope#findInteractive(expand('<cword>'))<CR>
-nnoremap <leader>l :call ToggleLocationList()<CR>
+if has("cscope") 
+    set csprg=/usr/bin/cscope
+    set csto=0
+    set cst
+    set csverb
+    set cspc=3
+    "add any database in current dir
+    if filereadable("cscope.out")
+        cs add cscope.out
+    "else search cscope.out elsewhere
+    else
+        let cscope_file=findfile("cscope.out",".;")
+        let cscope_pre=matchstr(cscope_file,".*/") 
+        if !empty(cscope_file) && filereadable(cscope_file)
+            silent! exe "cs add" cscope_file cscope_pre
+        endif
+    endif
+endif
+
 " s: Find this C symbol
-nnoremap  <leader>fs :call cscope#find('s', expand('<cword>'))<CR>
+nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
 " g: Find this definition
-nnoremap  <leader>fg :call cscope#find('g', expand('<cword>'))<CR>
-" d: Find functions called by this function
-nnoremap  <leader>fd :call cscope#find('d', expand('<cword>'))<CR>
+nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
 " c: Find functions calling this function
-nnoremap  <leader>fc :call cscope#find('c', expand('<cword>'))<CR>
+nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
 " t: Find this text string
-nnoremap  <leader>ft :call cscope#find('t', expand('<cword>'))<CR>
+nmap <leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
 " e: Find this egrep pattern
-nnoremap  <leader>fe :call cscope#find('e', expand('<cword>'))<CR>
+nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
 " f: Find this file
-nnoremap  <leader>ff :call cscope#find('f', expand('<cword>'))<CR>
+nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
 " i: Find files #including this file
-nnoremap  <leader>fi :call cscope#find('i', expand('<cword>'))<CR>
+nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+" d: Find functions called by this function
+nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+
