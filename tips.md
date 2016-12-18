@@ -63,9 +63,11 @@
 ####ctags
 生成tags文件：ctags -R （ctags也可以使用cscope数据库）
 - CTRL-]	跟着link/tag转入 (follow link/tag)
-- CTRL-o	回到上一次的jump (go back)
-- CTRL-i	跳回下一个 (go forward)
+- CTRL-T	标签退栈，配合CTRL-]
+- CTRL-o	向后跳转
+- CTRL-i	向前跳转
 - :ju		显示所有的可以跳跃的地方 (print jump list)
+- :tag xxx	跳转到符号xxx定义处
 
 ####cscope
 生成cscope数据库：
