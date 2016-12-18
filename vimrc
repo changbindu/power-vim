@@ -484,7 +484,7 @@ if has("cscope")
     set cspc=3
     "add any database in current dir
     if filereadable("cscope.out")
-        cs add cscope.out
+        silent! cs add cscope.out
     "else search cscope.out elsewhere
     else
         let cscope_file=findfile("cscope.out",".;")

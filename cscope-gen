@@ -1,0 +1,14 @@
+# generate cscope database for linux kernel
+
+base_dirs="arch/x86 arch/x86_64 init ipc kernel lib mm samples security tools virt drivers/base include"
+all_dirs="$base_dirs $*"
+
+for d in $all_dirs	
+do
+  echo "$d"
+done
+
+echo 'generating database for kernel...'
+find $all_dirs -name "*.h" -o -name "*.c" -o -name "*.cc" > cscope.files
+cscope -bkq -I include/ -i cscope.files
+echo 'done'
