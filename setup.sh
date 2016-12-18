@@ -28,7 +28,7 @@ if [ $update == false ]; then
 fi
 
 echo "Installation will take some time, please wait!"
-cp .vimrc ~/.vimrc
+cp vimrc ~/.vimrc
 cp tips.md ~/.vim/
 
 sudo apt-get install python-pip vim vim-nox exuberant-ctags cscope git astyle
