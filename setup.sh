@@ -34,6 +34,8 @@ cp tips.md ~/.vim/
 sudo apt-get install python-pip vim vim-nox exuberant-ctags cscope git astyle
 sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
 
+echo "now installing plugins, please ignore the error of missing color scheme 'fisa'"
+
 if [ $update == false ]; then
     echo "Installing Vundle..."
     git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
