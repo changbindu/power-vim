@@ -148,6 +148,9 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <=
 set cursorline
 hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 
+" right margin
+set colorcolumn=80
+
 " always show status bar
 set ls=2
 
