@@ -1,6 +1,10 @@
 # generate cscope database for linux kernel
 
-base_dirs="arch/x86 init ipc kernel lib mm samples security tools virt drivers/base include"
+base_dirs="arch/x86 init ipc kernel lib mm samples security tools virt include
+           drivers/base drivers/cpufreq drivers/cpuidle drivers/devfreq drivers/dma
+           drivers/dma-buf drivers/idle drivers/irqchip drivers/of drivers/pci
+           drivers/perf drivers/char drivers/platform drivers/power drivers/reset
+           drivers/vfio drivers/virt drivers/virtio"
 all_dirs="$base_dirs $*"
 
 for d in $all_dirs	

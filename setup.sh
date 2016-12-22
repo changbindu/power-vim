@@ -33,6 +33,7 @@ cp tips.md ~/.vim/
 
 sudo apt-get install python-pip vim vim-nox exuberant-ctags cscope git astyle
 sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
+sudo cp kcscope-gen /usr/bin/kcscope-gen
 
 echo "now installing plugins, please ignore the error of missing color scheme 'fisa'"
 
