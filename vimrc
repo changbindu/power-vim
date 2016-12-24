@@ -55,7 +55,7 @@ Plugin 'Townk/vim-autoclose'
 Plugin 'michaeljsmith/vim-indent-object'
 " Python mode (indentation, doc, refactor, lints, code checking, motion and
 " operators, highlighting, run and ipdb breakpoints)
-Plugin 'klen/python-mode'
+Plugin 'python-mode/python-mode'
 " Better autocompletion
 Plugin 'Shougo/neocomplete.vim'
 " Snippets manager (SnipMate), dependencies, and snippets repo
@@ -76,9 +76,9 @@ Plugin 'scrooloose/syntastic'
 " Paint css colors with the real color
 Plugin 'lilydjwg/colorizer'
 " smart cscope helper for vim
-" Plugin 'vim-scripts/cscope.vim'
 
 " Plugins from vim-scripts repos:
+" Plugin 'vim-scripts/cscope.vim'
 
 " Search results counter
 Plugin 'IndexedSearch'
@@ -515,3 +515,39 @@ nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 " d: Find functions called by this function
 nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
+
+" Highlight all instances of word under cursor, when idle.
+" Useful when studying strange source code.
+" Type z/ to toggle highlighting on/off.
+nnoremap z/ :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
+function! AutoHighlightToggle()
+   let @/ = ''
+   if exists('#auto_highlight')
+     au! auto_highlight
+     augroup! auto_highlight
+     setl updatetime=4000
+     echo 'Highlight current word: off'
+     return 0
+  else
+    augroup auto_highlight
+    au!
+    au CursorHold * let @/ = '\V\<'.escape(expand('<cword>'), '\').'\>'
+    augroup end
+    setl updatetime=500
+    echo 'Highlight current word: ON'
+  return 1
+ endif
+endfunction
+
+" Highlight the current word
+let w:highlighted = 0
+function! HighlightWordUnderCursor()
+    if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]' || !w:highlighted
+        exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/' 
+	let w:highlighted = 1
+    else 
+        match none 
+	let w:highlighted = 0
+    endif
+endfunction
+nmap <leader>h :call HighlightWordUnderCursor()<CR>
