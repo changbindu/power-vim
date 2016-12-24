@@ -103,6 +103,23 @@ cscope -bkq -i cscope.files
 - ,h		---- 高亮当前单词(在空白行表示取消高亮)
 - z/		---- 开启/打开自动高亮当前单词模式
 
+### snipMate
+输入for, if, switch等编程语言关键字，然后按<tab>自动插入代码片段，比如"for<tab>":
+for (i = 0; i < count; i++) {
+
+}
+
+### Git集成(git-vim)
+- ,gs		---- :GitStatus
+- ,gd		---- :GitDiff
+- ,gD		---- :GitDiff –cached
+- ,gl		---- :GitLog
+- ,ga		---- :GitAdd
+- ,gA		---- :GitAdd <cfile>
+- ,gc		---- :GitCommit
+- ,gb		---- :GitBlame
+
+
 ### diff 模式
 - 比较 A ， B 文件， vim – d A B 或者这样或先打开文件 A， 然后 
     :vsp（全名vsplit）
