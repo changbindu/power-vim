@@ -13,8 +13,9 @@ do
 done
 
 echo 'generating database for kernel and old one will be deleted...'
-find $all_dirs \( \( -iname "*.c" -o -iname "*.cc" -o -iname "*.h" \) -and \( -not -type l \) \) -print > cscope.files
+find $all_dirs \( \( -iname "*.c" -o -iname "*.cc" -o -iname "*.h" \) -and \( -type f \) \) > cscope.files
 # process links
 find $all_dirs \( \( -iname "*.c" -o -iname "*.cc" -o -iname "*.h" \) -and -type l \) -exec realpath --relative-to=. "{}" \;  >> cscope.files
+
 cscope -bkq -I include/ -i cscope.files
 echo 'done'
