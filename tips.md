@@ -130,14 +130,7 @@ for (i = 0; i < count; i++) {
 - [c 		---- 反向跳转
 
 ### Python调试:
-- :Dbg		---- over
-- :Dbg		---- into
-- :Dbg		---- out
-- :Dbg		---- here
-- :Dbg		---- break
-- :Dbg		---- watch
-- :Dbg		---- down
-- :Dbg		---- up
+/todo
 
 ### 编辑大文件
 编辑大文件时，插件会导致卡死，此时可以禁用插件启动vim: vim -u "NONE" file.log
