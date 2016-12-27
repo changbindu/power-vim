@@ -204,17 +204,6 @@ set completeopt-=preview
 " save as sudo
 ca w!! w !sudo tee "%"
 
-" simple recursive grep
-" both recursive grep commands with internal or external (fast) grep
-command! -nargs=1 RecurGrep lvimgrep /<args>/gj ./**/*.* | lopen | set nowrap
-command! -nargs=1 RecurGrepFast silent exec 'lgrep! <q-args> ./**/*.*' | lopen
-" mappings to call them
-nmap <leader>R :RecurGrep 
-nmap <leader>r :RecurGrepFast 
-" mappings to call them with the default word as search text
-nmap <leader>wR :RecurGrep <cword><CR>
-nmap <leader>wr :RecurGrepFast <cword><CR>
-
 " use 256 colors when possible
 if &term =~? 'mlterm\|xterm\|xterm-256\|screen-256'
 	let &t_Co = 256
@@ -235,29 +224,10 @@ set scrolloff=3
 " (complete only the common part, list the options that match)
 set wildmode=list:longest
 
-" better backup, swap and undos storage
-set directory=/tmp/vim/tmp         " directory to place swap files in
-" set backup                       " make backup files
-set backupdir=/tmp/vim/backups   " where to put backup files
-" set undofile                     " persistent undos - undo after you re-open the file
-set undodir=/tmp/vim/undos
-" store yankring history file there too
-let g:yankring_history_dir = '/tmp/vim/'
-
-" create needed directories if they don't exist
-if !isdirectory(&backupdir)
-    call mkdir(&backupdir, "p")
-endif
-if !isdirectory(&directory)
-    call mkdir(&directory, "p")
-endif
-if !isdirectory(&undodir)
-    call mkdir(&undodir, "p")
-endif
-
 " ============================================================================
 " Plugins settings and mappings
 " Edit them as you wish.
+
 
 " Tagbar ----------------------------- 
 
@@ -269,6 +239,62 @@ let g:tagbar_compact = 1
 let g:tagbar_autoclose = 0
 let g:tagbar_autopreview = 0
 let g:tagbar_sort = 0
+
+
+" Vim-debug ------------------------------
+
+" disable default mappings, have a lot of conflicts with other plugins
+let g:vim_debug_disable_mappings = 1
+
+
+" Syntastic ------------------------------
+
+" show list of errors and warnings on the current file
+nmap <leader>e :Errors<CR>
+" check also when just opened the file
+let g:syntastic_check_on_open = 1
+" don't put icons on the sign column (it hides the vcs status icons of signify)
+let g:syntastic_enable_signs = 0
+
+
+" TabMan ------------------------------
+
+" mappings to toggle display, and to focus on it
+let g:tabman_toggle = 'tl'
+let g:tabman_focus  = 'tf'
+
+
+" Autoclose ------------------------------
+
+" Fix to let ESC work as espected with Autoclose plugin
+let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
+
+
+" DragVisuals ------------------------------
+
+" mappings to move blocks in 4 directions
+vmap <expr> <S-M-LEFT> DVB_Drag('left')
+vmap <expr> <S-M-RIGHT> DVB_Drag('right')
+vmap <expr> <S-M-DOWN> DVB_Drag('down')
+vmap <expr> <S-M-UP> DVB_Drag('up')
+" mapping to duplicate block
+vmap <expr> D DVB_Duplicate()
+
+
+" Window Chooser ------------------------------
+
+" mapping
+nmap  -  <Plug>(choosewin)
+" show big letters
+let g:choosewin_overlay_enable = 1
+
+
+" Airline ------------------------------
+
+let g:airline_powerline_fonts = 0
+let g:airline_theme = 'light'
+let g:airline#extensions#whitespace#enabled = 0
+
 
 " NERDTree ----------------------------- 
 
@@ -283,166 +309,6 @@ nmap <leader>t :NERDTreeFind<CR>
 " don;t show these file types
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
-
-" Vim-debug ------------------------------
-
-" disable default mappings, have a lot of conflicts with other plugins
-let g:vim_debug_disable_mappings = 1
-
-" CtrlP ------------------------------
-
-" file finder mapping
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-" search from git root if possible
-let g:ctrlp_working_path_mode = 'ra'
-" ignore these files and folders on file finder
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.git|\.hg|\.svn)$',
-  \ 'file': '\v\.(exe|so|dll|pyc|pyo|o)$',
-  \ }
-" tags (symbols) in current file finder mapping
-nmap <leader>g :CtrlPBufTag<CR>
-" tags (symbols) in all files finder mapping
-nmap <leader>G :CtrlPBufTagAll<CR>
-" general code finder in all files mapping
-nmap <leader>f :CtrlPLine<CR>
-" files finder mapping
-nmap <leader>p :CtrlP<CR>
-" to be able to call CtrlP with default search text
-function! CtrlPWithSearchText(search_text, ctrlp_command_end)
-    execute ':CtrlP' . a:ctrlp_command_end
-    call feedkeys(a:search_text)
-endfunction
-" same as previous mappings, but calling with current word as default text
-nmap <leader>wg :call CtrlPWithSearchText(expand('<cword>'), 'BufTag')<CR>
-nmap <leader>wG :call CtrlPWithSearchText(expand('<cword>'), 'BufTagAll')<CR>
-nmap <leader>wf :call CtrlPWithSearchText(expand('<cword>'), 'Line')<CR>
-nmap <leader>we :call CtrlPWithSearchText(expand('<cword>'), '')<CR>
-nmap <leader>pe :call CtrlPWithSearchText(expand('<cfile>'), '')<CR>
-
-" Syntastic ------------------------------
-
-" show list of errors and warnings on the current file
-nmap <leader>e :Errors<CR>
-" check also when just opened the file
-let g:syntastic_check_on_open = 1
-" don't put icons on the sign column (it hides the vcs status icons of signify)
-let g:syntastic_enable_signs = 0
-
-" Python-mode ------------------------------
-
-" don't use linter, we use syntastic for that
-let g:pymode_lint_on_write = 0
-let g:pymode_lint_signs = 0
-" don't fold python code on open
-let g:pymode_folding = 0
-" don't load rope by default. Change to 1 to use rope
-let g:pymode_rope = 0
-" open definitions on same window, and custom mappings for definitions and occurrences
-let g:pymode_rope_goto_definition_bind = ',d'
-let g:pymode_rope_goto_definition_cmd = 'e'
-nmap <leader>D :tab split<CR>:PymodePython rope.goto()<CR>
-nmap <leader>o :RopeFindOccurrences<CR>
-
-" NeoComplete ------------------------------
-
-" most of them not documented because I'm not sure how they work
-" (docs aren't good, had to do a lot of trial and error to make 
-" it play nice)
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#auto_completion_start_length=1
-let g:neocomplete#manual_completion_start_length=1
-let g:neocomplete#enable_auto_select=1
-let g:neocomplete#enable_auto_close_preview=1
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-    \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php =
-"\ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-let g:neocomplete#sources#omni#input_patterns.c =
-    \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-let g:neocomplete#sources#omni#input_patterns.cpp =
-    \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-
-
-" For smart TAB completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-"        \ <SID>check_back_space() ? "\<TAB>" :
-"        \ neocomplete#start_manual_complete()
-"  function! s:check_back_space() "{{{
-"    let col = col('.') - 1
-"    return !col || getline('.')[col - 1]  =~ '\s'
-" endfunction"}}}
-
-" TabMan ------------------------------
-
-" mappings to toggle display, and to focus on it
-let g:tabman_toggle = 'tl'
-let g:tabman_focus  = 'tf'
-
-" Autoclose ------------------------------
-
-" Fix to let ESC work as espected with Autoclose plugin
-let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
-
-" DragVisuals ------------------------------
-
-" mappings to move blocks in 4 directions
-vmap <expr> <S-M-LEFT> DVB_Drag('left')
-vmap <expr> <S-M-RIGHT> DVB_Drag('right')
-vmap <expr> <S-M-DOWN> DVB_Drag('down')
-vmap <expr> <S-M-UP> DVB_Drag('up')
-" mapping to duplicate block
-vmap <expr> D DVB_Duplicate()
 
 " Signify ------------------------------
 
@@ -460,94 +326,12 @@ highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
 highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
 highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 
-" Window Chooser ------------------------------
 
-" mapping
-nmap  -  <Plug>(choosewin)
-" show big letters
-let g:choosewin_overlay_enable = 1
+" Other plugin configs ------------------------
 
-" Airline ------------------------------
-
-let g:airline_powerline_fonts = 0
-let g:airline_theme = 'light'
-let g:airline#extensions#whitespace#enabled = 0
-
-" ctags ------------------------------
-" use command 'ctags -R .' to generate tags file first
-set tags=tags;/
-
-" Cscope ------------------------------
-" use command 'cscope -Rbq -f xxx.out' to generate db first
-if has("cscope") 
-    set csprg=/usr/bin/cscope
-    set csto=0
-    set cst
-    set csverb
-    set cspc=3
-    "add any database in current dir
-    if filereadable("cscope.out")
-        silent! cs add cscope.out
-    "else search cscope.out elsewhere
-    else
-        let cscope_file=findfile("cscope.out",".;")
-        let cscope_pre=matchstr(cscope_file,".*/") 
-        if !empty(cscope_file) && filereadable(cscope_file)
-            silent! exe "cs add" cscope_file cscope_pre
-        endif
-    endif
-endif
-
-" s: Find this C symbol
-nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
-" g: Find this definition
-nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
-" c: Find functions calling this function
-nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
-" t: Find this text string
-nmap <leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
-" e: Find this egrep pattern
-nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
-" f: Find this file
-nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
-" i: Find files #including this file
-nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-" d: Find functions called by this function
-nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
-
-
-" Highlight all instances of word under cursor, when idle.
-" Useful when studying strange source code.
-" Type z/ to toggle highlighting on/off.
-nnoremap z/ :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
-function! AutoHighlightToggle()
-   let @/ = ''
-   if exists('#auto_highlight')
-     au! auto_highlight
-     augroup! auto_highlight
-     setl updatetime=4000
-     echo 'Highlight current word: off'
-     return 0
-  else
-    augroup auto_highlight
-    au!
-    au CursorHold * let @/ = '\V\<'.escape(expand('<cword>'), '\').'\>'
-    augroup end
-    setl updatetime=500
-    echo 'Highlight current word: ON'
-  return 1
- endif
-endfunction
-
-" Highlight the current word
-let w:highlighted = 0
-function! HighlightWordUnderCursor()
-    if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]' || !w:highlighted
-        exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/' 
-	let w:highlighted = 1
-    else 
-        match none 
-	let w:highlighted = 0
-    endif
-endfunction
-nmap <leader>h :call HighlightWordUnderCursor()<CR>
+source ~/.vim/plugin_cfg/backup.vim
+" grep, CtrlP, Cscope
+source ~/.vim/plugin_cfg/search.vim
+source ~/.vim/plugin_cfg/python-mode.vim
+source ~/.vim/plugin_cfg/neocomplete.vim
+source ~/.vim/plugin_cfg/highlight.vim

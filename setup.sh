@@ -28,8 +28,8 @@ if [ $update == false ]; then
 fi
 
 echo "Installation will take some time, please wait!"
-cp vimrc ~/.vimrc
-cp tips.md ~/.vim/
+echo 'source ~/.vim/vimrc' > ~/.vimrc
+cp -rf tips.md plugin_cfg ~/.vim/
 
 sudo apt-get install python-pip vim vim-nox exuberant-ctags cscope git astyle
 sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
