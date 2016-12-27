@@ -58,6 +58,8 @@ Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'python-mode/python-mode'
 " Better autocompletion
 Plugin 'Shougo/neocomplete.vim'
+" a fast, as-you-type, fuzzy-search code completion engine for Vim
+" Plugin 'Valloric/YouCompleteMe'
 " Snippets manager (SnipMate), dependencies, and snippets repo
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -104,9 +106,6 @@ Plugin 'YankRing.vim'
 
 " Zen coding
 " Plugin 'mattn/emmet-vim'
-
-" a fast, as-you-type, fuzzy-search code completion engine for Vim
-" Plugin 'Valloric/YouCompleteMe'
 
 " Code snippets engine for Vim
 " Plugin 'drmingdrmer/xptemplate'
@@ -334,4 +333,5 @@ source ~/.vim/plugin_cfg/backup.vim
 source ~/.vim/plugin_cfg/search.vim
 source ~/.vim/plugin_cfg/python-mode.vim
 source ~/.vim/plugin_cfg/neocomplete.vim
+"source ~/.vim/plugin_cfg/youcompleteme.vim
 source ~/.vim/plugin_cfg/highlight.vim

@@ -29,9 +29,11 @@ fi
 
 echo "Installation will take some time, please wait!"
 echo 'source ~/.vim/vimrc' > ~/.vimrc
-cp -rf tips.md plugin_cfg ~/.vim/
+cp -rf tips.md vimrc plugin_cfg ~/.vim/
 
 sudo apt-get install python-pip vim vim-nox exuberant-ctags cscope git astyle
+#sudo apt-get install build-essential cmake
+#sudo apt-get install python-dev python3-dev libclang cmake
 sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
 sudo cp kcscope-gen /usr/bin/kcscope-gen
 
@@ -47,6 +49,9 @@ else
     echo "Update plugins"
     vim +PluginUpdate
 fi
+
+#echo 'install YouCompleteMe...'
+#cd ~/.vim/bundle/YouCompleteMe and python install.py --clang-completer
 
 echo "All done, enjoy with pow-vim!"
 
