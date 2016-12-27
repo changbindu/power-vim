@@ -51,7 +51,7 @@ else
 fi
 
 #echo 'install YouCompleteMe...'
-#cd ~/.vim/bundle/YouCompleteMe and python install.py --clang-completer
+#cd ~/.vim/bundle/YouCompleteMe && git submodule update --init --recursive && ./install.sh --clang-completer
 
 echo "All done, enjoy with pow-vim!"
 
