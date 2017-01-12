@@ -140,15 +140,15 @@ autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " remember last position
-au BufReadPost * if line("'\"") > 0|if line("'\"") <=
-	\ line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
 
 " highlight current line
 set cursorline
 hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 
 " right margin
-set colorcolumn=80
+set colorcolumn=81
 
 " always show status bar
 set ls=2
