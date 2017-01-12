@@ -1,1 +1,3 @@
+# generate cscope database heper script
+
 cscope -Rbq $*

@@ -1,4 +1,6 @@
 # generate cscope database for linux kernel
+# usage: kcscope-gen [folders]
+#
 
 base_dirs="arch/x86 init ipc kernel lib mm samples security tools virt include
            drivers/base drivers/cpufreq drivers/cpuidle drivers/devfreq drivers/dma
@@ -7,7 +9,8 @@ base_dirs="arch/x86 init ipc kernel lib mm samples security tools virt include
            drivers/vfio drivers/virt drivers/virtio"
 all_dirs="$base_dirs $*"
 
-for d in $all_dirs	
+echo 'source files included:'
+for d in $all_dirs
 do
   echo "$d"
 done
