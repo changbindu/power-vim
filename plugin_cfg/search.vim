@@ -31,6 +31,8 @@ nmap <leader>f :CtrlPLine<CR>
 " files finder mapping
 nmap <leader>p :CtrlP<CR>
 nmap <leader>p. :CtrlP .<CR>
+nmap <leader>pb :CtrlPBuffer<CR>
+nmap <leader>pm :CtrlPMixed<CR>
 " to be able to call CtrlP with default search text
 function! CtrlPWithSearchText(search_text, ctrlp_command_end)
     execute ':CtrlP' . a:ctrlp_command_end
@@ -84,4 +86,7 @@ nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 " d: Find functions called by this function
 nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+
+" denite ------------------------------
 

@@ -58,6 +58,9 @@ Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'python-mode/python-mode'
 " Better autocompletion
 Plugin 'Shougo/neocomplete.vim'
+" A common extensible interface for searching and displaying lists
+" of information from within vim.
+" Plugin 'Shougo/denite.nvim'
 " a fast, as-you-type, fuzzy-search code completion engine for Vim
 " Plugin 'Valloric/YouCompleteMe'
 " Snippets manager (SnipMate), dependencies, and snippets repo
