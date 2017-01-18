@@ -30,6 +30,7 @@ nmap <leader>G :CtrlPBufTagAll<CR>
 nmap <leader>f :CtrlPLine<CR>
 " files finder mapping
 nmap <leader>p :CtrlP<CR>
+nmap <leader>p. :CtrlP .<CR>
 " to be able to call CtrlP with default search text
 function! CtrlPWithSearchText(search_text, ctrlp_command_end)
     execute ':CtrlP' . a:ctrlp_command_end
