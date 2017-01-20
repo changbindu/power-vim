@@ -40,7 +40,7 @@ function install_pkgs() {
 function install_pypkgs() {
     for t in $*
     do
-        pip list | grep $t >/dev/null 2>&1 || sudo pip install $t
+        pip list 2>&1 | grep $t >/dev/null || sudo pip install $t
     done
 }
 
