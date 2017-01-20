@@ -1,5 +1,4 @@
 #!/bin/bash
-
 update=false
 
 if [ -f ~/.vim/tips.md ] && [ -d ~/.vim/bundle/Vundle.vim ]; then
@@ -31,11 +30,27 @@ echo "Installation will take some time, please wait!"
 echo 'source ~/.vim/vimrc' > ~/.vimrc
 cp -rf tips.md vimrc plugin_cfg ~/.vim/
 
-sudo apt-get install python-pip vim vim-nox exuberant-ctags cscope git astyle
-#sudo apt-get install build-essential cmake
-#sudo apt-get install python-dev python3-dev libclang cmake
-sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
+function install_pkgs() {
+    for t in $*
+    do
+        dpkg -s $t >/dev/null 2>&1 || sudo apt install $t
+    done
+}
+
+function install_pypkgs() {
+    for t in $*
+    do
+        pip list | grep $t >/dev/null 2>&1 || sudo pip install $t
+    done
+}
+
+install_pkgs python-pip vim vim-nox exuberant-ctags cscope git astyle
+#install_pkgs build-essential cmake
+#install_pkgs python-dev python3-dev libclang cmake
+install_pypkgs dbgp vim-debug pep8 flake8 pyflakes isort
+
 sudo cp kcscope-gen /usr/bin/kcscope-gen
+sudo cp ucscope-gen /usr/bin/ucscope-gen
 
 echo "now installing plugins, please ignore the error of missing color scheme 'fisa'"
 
