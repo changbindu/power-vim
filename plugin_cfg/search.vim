@@ -14,6 +14,8 @@ nmap <leader>wr :RecurGrepFast <cword><CR>
 " file finder mapping
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_regexp = 1
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:15,results:100'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 " search from git root if possible
 let g:ctrlp_working_path_mode = 'ra'
@@ -26,6 +28,8 @@ let g:ctrlp_custom_ignore = {
 nmap <leader>g :CtrlPBufTag<CR>
 " tags (symbols) in all files finder mapping
 nmap <leader>G :CtrlPBufTagAll<CR>
+" tags (symbols) in tags or cscope finder mapping
+nmap <leader>ps :CtrlPCScopeAll<CR>
 " general code finder in all files mapping
 nmap <leader>f :CtrlPLine<CR>
 " files finder mapping

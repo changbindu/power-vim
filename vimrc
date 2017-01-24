@@ -39,6 +39,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'
 " Code and files fuzzy finder
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'ivan-cukic/vim-ctrlp-cscope'
 " Git integration
 Plugin 'motemen/git-vim'
 " Tab list panel
