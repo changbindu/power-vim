@@ -45,6 +45,7 @@ Plugin 'motemen/git-vim'
 " Tab list panel
 Plugin 'kien/tabman.vim'
 " Airline
+Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " Terminal Vim with 256 colors colorscheme
 Plugin 'fisadev/fisa-vim-colorscheme'

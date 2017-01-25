@@ -80,6 +80,7 @@
 生成cscope数据库：
 find . -name "*.h" -o -name "*.c" -o -name "*.cc" > cscope.files
 cscope -bkq -i cscope.files
+对于Linux Kernel，还可以用'make cscope'直接生成cscope数据库。
 - ,fg		---- 查找函数、宏、枚举等定义的位置，类似ctags所提供的功能
 - ,fc		---- 查找调用本函数的函数
 - ,ft		---- 查找指定的字符串
