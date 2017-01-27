@@ -145,7 +145,7 @@ autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " remember last position
-au BufWinLeave * mkview
+au BufWinLeave * silent mkview
 au BufWinEnter * silent loadview
 
 " highlight current line
