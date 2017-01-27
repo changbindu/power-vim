@@ -39,7 +39,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'
 " Code and files fuzzy finder
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'ivan-cukic/vim-ctrlp-cscope'
+" Plugin 'ivan-cukic/vim-ctrlp-cscope'
 " Git integration
 Plugin 'motemen/git-vim'
 " Tab list panel
@@ -243,6 +243,7 @@ let g:tagbar_compact = 1
 let g:tagbar_autoclose = 0
 let g:tagbar_autopreview = 0
 let g:tagbar_sort = 0
+let g:tagbar_autoshowtag = 1
 
 
 " Vim-debug ------------------------------
