@@ -40,6 +40,7 @@ Plugin 'majutsushi/tagbar'
 " Code and files fuzzy finder
 Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'ivan-cukic/vim-ctrlp-cscope'
+Plugin 'hari-rangarajan/CCTree'
 " Git integration
 Plugin 'motemen/git-vim'
 " Tab list panel
@@ -83,10 +84,7 @@ Plugin 'scrooloose/syntastic'
 " Paint css colors with the real color
 Plugin 'lilydjwg/colorizer'
 " smart cscope helper for vim
-
-" Plugins from vim-scripts repos:
 " Plugin 'vim-scripts/cscope.vim'
-
 " Search results counter
 Plugin 'IndexedSearch'
 " XML/HTML tags navigation
