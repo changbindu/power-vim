@@ -39,11 +39,14 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'
 " Code and files fuzzy finder
 Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'ivan-cukic/vim-ctrlp-cscope'
+Plugin 'hari-rangarajan/CCTree'
 " Git integration
 Plugin 'motemen/git-vim'
 " Tab list panel
 Plugin 'kien/tabman.vim'
 " Airline
+Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " Terminal Vim with 256 colors colorscheme
 Plugin 'fisadev/fisa-vim-colorscheme'
@@ -81,10 +84,7 @@ Plugin 'scrooloose/syntastic'
 " Paint css colors with the real color
 Plugin 'lilydjwg/colorizer'
 " smart cscope helper for vim
-
-" Plugins from vim-scripts repos:
 " Plugin 'vim-scripts/cscope.vim'
-
 " Search results counter
 Plugin 'IndexedSearch'
 " XML/HTML tags navigation
@@ -143,7 +143,7 @@ autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " remember last position
-au BufWinLeave * mkview
+au BufWinLeave * silent mkview
 au BufWinEnter * silent loadview
 
 " highlight current line
@@ -245,6 +245,7 @@ let g:tagbar_compact = 1
 let g:tagbar_autoclose = 0
 let g:tagbar_autopreview = 0
 let g:tagbar_sort = 0
+let g:tagbar_autoshowtag = 1
 
 
 " Vim-debug ------------------------------

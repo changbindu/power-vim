@@ -45,6 +45,7 @@
 - ,G		---- 打开CtrlP，在所有打开的文件中搜索符号
 - ,f		---- 打开CtrlP，在当前文件搜索单词
 当CtrlP打开后：
+- <c-f>		---- 切换搜索方式,如MRU, Buffers, Files
 - <c-d>		---- 切换到只搜索文件名模式，不包括全路径
 - <c-r>		---- 切换到正则表达式搜索模式
 
@@ -80,6 +81,7 @@
 生成cscope数据库：
 find . -name "*.h" -o -name "*.c" -o -name "*.cc" > cscope.files
 cscope -bkq -i cscope.files
+对于Linux Kernel，还可以用'make cscope'直接生成cscope数据库。
 - ,fg		---- 查找函数、宏、枚举等定义的位置，类似ctags所提供的功能
 - ,fc		---- 查找调用本函数的函数
 - ,ft		---- 查找指定的字符串
