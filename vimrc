@@ -198,6 +198,10 @@ imap <M-Down> <ESC><c-w>j
 " old autocomplete keyboard shortcut
 imap <C-J> <C-X><C-O>
 
+" spell checking
+set spelllang=en_us
+map <silent> <C-S> :set spell!<CR>
+
 " Comment this line to enable autocompletion preview window
 " (displays documentation related to the selected completion option)
 " Disabled by default because preview makes the window flicker

@@ -135,6 +135,10 @@ for (i = 0; i < count; i++) {
 - ]c		---- 跳转到下一差异点
 - [c 		---- 反向跳转
 
+### 拼写检查
+:set spell spelllang=en_us
+在错误的单词上按 z= 显示纠正提示。
+
 ### Python调试:
 /todo
 
