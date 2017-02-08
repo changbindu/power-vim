@@ -28,7 +28,7 @@ fi
 
 echo "Installation will take some time, please wait!"
 echo 'source ~/.vim/vimrc' > ~/.vimrc
-cp -rf tips.md vimrc plugin_cfg ~/.vim/
+cp -rf tips.md vimrc plugin_cfg dict ~/.vim/
 
 function install_pkgs() {
     for t in $*
