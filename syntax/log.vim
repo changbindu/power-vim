@@ -15,7 +15,7 @@ syn match log_warning 	'\c.*\<\(WARNING\|Exception\|Permission\|DELETE\|DELETING
 syn region log_string 	start=/'/ end=/'/ end=/$/ skip=/\\./
 syn region log_string 	start=/"/ end=/"/ skip=/\\./
 syn match log_number 	'0x[0-9a-fA-F]*\|\[<[0-9a-f]\+>\]\|\<\d[0-9a-fA-F]*'
-syn match log_notice 	'offline\|online\|Initializing\|register\|registered\|suspend\|resmue\|hibernation\|OKAY*'
+syn match log_notice 	'offline\|online\|Initializing\|register\|registered\|suspend\|resmue\|hibernation\|reboot\|OKAY*'
 
 syn match   log_date '\(Jan\|Feb\|Mar\|Apr\|May\|Jun\|Jul\|Aug\|Sep\|Oct\|Nov\|Dec\) [ 0-9]\d *'
 syn match   log_date '\d\{4}-\d\d-\d\d'
