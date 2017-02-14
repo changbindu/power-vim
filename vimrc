@@ -93,7 +93,8 @@ Plugin 'matchit.zip'
 Plugin 'Wombat'
 " Yank history navigation
 Plugin 'YankRing.vim'
-
+" log view
+Plugin 'vim-scripts/oops_trace.vim'
 
 " ===========================================================================
 " Below plugins are mostly used, uncomment them to enable
@@ -343,3 +344,4 @@ source ~/.vim/plugin_cfg/python-mode.vim
 source ~/.vim/plugin_cfg/neocomplete.vim
 "source ~/.vim/plugin_cfg/youcompleteme.vim
 source ~/.vim/plugin_cfg/highlight.vim
+source ~/.vim/plugin_cfg/log.vim
