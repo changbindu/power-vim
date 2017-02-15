@@ -180,6 +180,9 @@ nmap <F2> :tabnew ~/.vim/tips.md<CR>
 " formate c code
 nmap <F5> :%!astyle --mode=c --style=linux<CR>
 
+" past mode swticher
+set pastetoggle=<F6>
+
 " tab navigation mappings
 map <C-S-Right> :tabnext<CR>
 imap <C-S-Right> <ESC>:tabnext<CR>
