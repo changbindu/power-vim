@@ -35,6 +35,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 " Code commenter
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'mrtazz/DoxygenToolkit.vim'
 " Class/module browser
 Plugin 'majutsushi/tagbar'
 " Code and files fuzzy finder
