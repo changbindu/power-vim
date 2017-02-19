@@ -96,6 +96,10 @@ Plugin 'Wombat'
 Plugin 'YankRing.vim'
 " log view
 Plugin 'vim-scripts/oops_trace.vim'
+" ascii draw
+"Plugin 'vim-scripts/DrawIt'
+"Plugin 'vim-scripts/sketch.vim'
+
 
 " ===========================================================================
 " Below plugins are mostly used, uncomment them to enable
