@@ -209,7 +209,15 @@ imap <C-J> <C-X><C-O>
 
 " spell checking
 set spelllang=en_us
+hi clear SpellBad
 map <silent> <C-S> :set spell!<CR>
+
+autocmd FileType gitcommit setlocal spell
+autocmd FileType gitcommit
+	\ hi clear SpellBad | hi SpellBad cterm=underline |
+	\ hi clear SpellCap | hi link SpellCap SpellBad |
+	\ hi clear SpellLocal | hi link SpellLocal SpellBad |
+	\ hi clear SpellRare | hi link SpellRare SpellBad
 
 " Comment this line to enable autocompletion preview window
 " (displays documentation related to the selected completion option)
