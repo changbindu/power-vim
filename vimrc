@@ -149,8 +149,8 @@ autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " remember last position
-au BufWinLeave * silent mkview
-au BufWinEnter * silent loadview
+au BufWinLeave ?* silent mkview
+au BufWinEnter ?* silent loadview
 
 " highlight current line
 set cursorline
@@ -213,7 +213,8 @@ hi clear SpellBad
 map <silent> <C-S> :set spell!<CR>
 
 autocmd FileType gitcommit setlocal spell
-autocmd FileType gitcommit
+autocmd FileType gitcommit 
+	\ set colorcolumn=76 |
 	\ hi clear SpellBad | hi SpellBad cterm=underline |
 	\ hi clear SpellCap | hi link SpellCap SpellBad |
 	\ hi clear SpellLocal | hi link SpellLocal SpellBad |
