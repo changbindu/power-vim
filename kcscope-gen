@@ -20,5 +20,7 @@ find $all_dirs \( \( -iname "*.c" -o -iname "*.cc" -o -iname "*.h" \) -and \( -t
 # process links
 find $all_dirs \( \( -iname "*.c" -o -iname "*.cc" -o -iname "*.h" \) -and -type l \) -exec realpath --relative-to=. "{}" \;  >> cscope.files
 
+sort -u cscope.files -o cscope.files
+
 cscope -bkq -I include/ -i cscope.files
 echo 'done'
