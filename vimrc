@@ -158,6 +158,7 @@ hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=whi
 
 " right margin
 set colorcolumn=81
+set textwidth=80
 
 " always show status bar
 set ls=2
@@ -214,7 +215,7 @@ map <silent> <C-S> :set spell!<CR>
 
 autocmd FileType gitcommit setlocal spell
 autocmd FileType gitcommit 
-	\ set colorcolumn=76 |
+	\ set colorcolumn=76 | set textwidth=75 |
 	\ hi clear SpellBad | hi SpellBad cterm=underline |
 	\ hi clear SpellCap | hi link SpellCap SpellBad |
 	\ hi clear SpellLocal | hi link SpellLocal SpellBad |
