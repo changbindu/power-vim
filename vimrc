@@ -151,7 +151,7 @@ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " remember last position
 au BufWinLeave ?* silent mkview
-au BufWinEnter ?* silent loadview
+au BufWinEnter ?* silent loadview | set nofoldenable
 
 " highlight current line
 set cursorline
