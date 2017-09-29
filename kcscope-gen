@@ -6,7 +6,8 @@ base_dirs="arch/x86 init ipc kernel lib mm samples security tools virt include
            drivers/base drivers/cpufreq drivers/cpuidle drivers/devfreq drivers/dma
            drivers/dma-buf drivers/idle drivers/irqchip drivers/of drivers/pci
            drivers/perf drivers/char drivers/platform drivers/power drivers/reset
-           drivers/vfio drivers/virt drivers/virtio"
+           drivers/vfio drivers/virt drivers/virtio fs/ext4"
+no_recursion_dirs="fs"
 all_dirs="$base_dirs $*"
 
 echo 'source files included:'
@@ -19,6 +20,9 @@ echo 'generating database for kernel and old one will be deleted...'
 find $all_dirs \( \( -iname "*.c" -o -iname "*.cc" -o -iname "*.h" \) -and \( -type f \) \) > cscope.files
 # process links
 find $all_dirs \( \( -iname "*.c" -o -iname "*.cc" -o -iname "*.h" \) -and -type l \) -exec realpath --relative-to=. "{}" \;  >> cscope.files
+
+# no recursion
+find $no_recursion_dirs \( \( -iname "*.c" -o -iname "*.cc" -o -iname "*.h" \) -and \( -type f -o -maxdepth 1 \) \) >> cscope.files
 
 sort -u cscope.files -o cscope.files
 
