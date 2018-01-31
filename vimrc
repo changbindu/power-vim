@@ -160,6 +160,8 @@ hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=whi
 " right margin
 set colorcolumn=81
 set textwidth=80
+set wrapmargin=80
+set formatoptions-=t
 
 " always show status bar
 set ls=2
