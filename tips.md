@@ -7,6 +7,8 @@
 - F4		---- 打开函数列表
 - F5		---- 格式化C代码
 - F6		---- 打开/关闭粘贴模式(禁用自动缩进, 即 :set paste)
+- F7		---- 跳转到 quickfix 列表的前一项
+- S-F7		---- 跳转到 quickfix 列表的后一项
 
 ### 多Tab编辑
 - :tabnew <file> ---- 打开一个新标签(或则在NerdTree窗口按't'键)
@@ -38,6 +40,7 @@
 ###vimgrep
 - ,r		---- 在当前目录递归搜索输入的单词，r代表recursive
 - ,R		---- 同上，直接用grep命令搜索
+- :vimgrep	---- 内置搜索命令，:cw打开Quickfix窗口查看结果，用:cn :cp 调转
 
 ###CtrlP
 - ,p		---- 打开CtrlP,在工作目录模糊搜索文件，工作目录是git根目录或当前
