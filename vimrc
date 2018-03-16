@@ -192,10 +192,16 @@ nmap <F5> :%!astyle --mode=c --style=linux<CR>
 " past mode swticher
 set pastetoggle=<F6>
 
-" jump in quickfix
+" vimgrep and quickfix
 :nnoremap <F7> :cnext<CR> 
 :nnoremap <S-F7> :cprev<CR>
 au FileType qf wincmd J
+augroup vim-grep
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l*    lwindow
+augroup END
+
 
 " tab navigation mappings
 map <C-S-Right> :tabnext<CR>
