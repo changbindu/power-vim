@@ -101,6 +101,8 @@ Plugin 'vim-scripts/oops_trace.vim'
 "Plugin 'vim-scripts/sketch.vim'
 " Folding
 Plugin 'Konfekt/FastFold'
+" Provide syntax for the neomutt configuration file
+Plugin 'neomutt/neomutt.vim'
 
 " ===========================================================================
 " Below plugins are mostly used, uncomment them to enable
