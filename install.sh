@@ -51,6 +51,7 @@ install_pypkgs dbgp vim-debug pep8 flake8 pyflakes isort
 
 sudo cp kcscope-gen /usr/bin/kcscope-gen
 sudo cp ucscope-gen /usr/bin/ucscope-gen
+sudo cp pycscope-gen /usr/bin/pycscope-gen
 
 echo "now installing plugins, please ignore the error of missing color scheme 'fisa'"
 
