@@ -75,7 +75,7 @@ Plugin 'garbas/vim-snipmate'
 " Git/mercurial/others diff icons on the side of the file lines
 Plugin 'mhinz/vim-signify'
 " Automatically sort python imports
-Plugin 'fisadev/vim-isort'
+" Plugin 'fisadev/vim-isort'
 " Drag visual blocks arround
 Plugin 'fisadev/dragvisuals.vim'
 " Window chooser
@@ -103,6 +103,9 @@ Plugin 'vim-scripts/oops_trace.vim'
 Plugin 'Konfekt/FastFold'
 " Provide syntax for the neomutt configuration file
 Plugin 'neomutt/neomutt.vim'
+
+" provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
+Plugin 'rust-lang/rust.vim'
 
 " ===========================================================================
 " Below plugins are mostly used, uncomment them to enable
