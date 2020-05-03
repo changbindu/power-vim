@@ -232,8 +232,8 @@ set spelllang=en_us
 hi clear SpellBad
 map <silent> <C-S> :set spell!<CR>
 
-autocmd FileType gitcommit setlocal spell
-autocmd FileType gitcommit 
+autocmd FileType gitcommit,rst,text,markdown setlocal spell
+autocmd FileType gitcommit,rst,text,markdown
 	\ set colorcolumn=76 | set textwidth=75 |
 	\ hi clear SpellBad | hi SpellBad cterm=underline |
 	\ hi clear SpellCap | hi link SpellCap SpellBad |
