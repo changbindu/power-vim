@@ -268,6 +268,10 @@ set scrolloff=3
 " (complete only the common part, list the options that match)
 set wildmode=list:longest
 
+" highlight extra whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
 " ============================================================================
 " Plugins settings and mappings
 " Edit them as you wish.
