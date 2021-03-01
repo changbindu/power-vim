@@ -71,7 +71,7 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'honza/vim-snippets'
-Plugin 'garbas/vim-snipmate'
+" Plugin 'garbas/vim-snipmate'
 " Git/mercurial/others diff icons on the side of the file lines
 Plugin 'mhinz/vim-signify'
 " Automatically sort python imports
