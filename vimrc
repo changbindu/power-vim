@@ -232,8 +232,8 @@ set spelllang=en_us
 hi clear SpellBad
 map <silent> <C-S> :set spell!<CR>
 
-autocmd FileType gitcommit setlocal spell
-autocmd FileType gitcommit 
+autocmd FileType gitcommit,rst,text,markdown setlocal spell
+autocmd FileType gitcommit,rst,text,markdown
 	\ set colorcolumn=76 | set textwidth=75 |
 	\ hi clear SpellBad | hi SpellBad cterm=underline |
 	\ hi clear SpellCap | hi link SpellCap SpellBad |
@@ -267,6 +267,10 @@ set scrolloff=3
 " autocompletion of files and commands behaves like shell
 " (complete only the common part, list the options that match)
 set wildmode=list:longest
+
+" highlight extra whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
 " ============================================================================
 " Plugins settings and mappings
